@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHITE COAT WARRIORS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* All CSS styles remain the same as in the original file */
+        :root {
+            --primary-blue: #1a56db;
+            --secondary-blue: #0ea5e9;
+            --dark-blue: #1e3a8a;
+            --light-blue: #dbeafe;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-teal: #14b8a6;
+            --accent-yellow: #fbbf24;
+            --accent-amber: #f59e0b;
+            --vibrant-blue: #3b82f6;
+            --vibrant-green: #22c55e;
+            --vibrant-purple: #a855f7;
+            --vibrant-pink: #e879f9;
+            --gradient-blue: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            --gradient-green: linear-gradient(135deg, var(--accent-green), #34d399);
+            --gradient-orange: linear-gradient(135deg, var(--accent-orange), #f97316);
+            --gradient-red: linear-gradient(135deg, var(--accent-red), #f87171);
+            --gradient-purple: linear-gradient(135deg, var(--accent-purple), #a78bfa);
+            --gradient-pink: linear-gradient(135deg, var(--accent-pink), #f472b6);
+            --gradient-teal: linear-gradient(135deg, var(--accent-teal), #2dd4bf);
+            --gradient-yellow: linear-gradient(135deg, var(--accent-yellow), #f59e0b);
+            --gradient-vibrant: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+            --shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 2px 5px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 5px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px;
+            color: #1e3a8a;
+            font-size: 8.25px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 9px;
+        }
+
+        .logo h1 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--dark-blue);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5px;
+            background: var(--gradient-vibrant);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo p {
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.525rem;
+        }
+
+        .page {
+            background: white;
+            border-radius: 9px;
+            padding: 9px;
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            display: none;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            backdrop-filter: blur(10px);
+        }
+
+        .active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .promo-banner {
+            background: var(--gradient-vibrant);
+            color: white;
+            padding: 11.25px;
+            border-radius: 7.5px;
+            margin-bottom: 11.25px;
+            text-align: center;
+            font-size: 0.45rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+        }
+
+        .promo-banner h2 {
+            font-size: 0.675rem;
+            margin-bottom: 6px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .promo-banner p {
+            line-height: 1.4;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 6px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 1.5px;
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 0.525rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 4.5px 6.75px;
+            border: 1.5px solid var(--light-blue);
+            border-radius: 3.75px;
+            font-size: 0.525rem;
+            background: #f8fafc;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(26, 86, 219, 0.15);
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .password-container .form-input {
+            padding-right: 22.5px;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 7.5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-blue);
+            font-size: 0.525rem;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4.5px 7.5px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.525rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            gap: 3px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(26, 86, 219, 0.2);
+        }
+
+        .btn-contact {
+            background: var(--gradient-green);
+            color: white;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-purple {
+            background: var(--gradient-purple);
+            color: white;
+        }
+
+        .btn-purple:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+        }
+
+        .btn-red {
+            background: var(--gradient-red);
+            color: white;
+        }
+
+        .btn-red:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-orange {
+            background: var(--gradient-orange);
+            color: white;
+        }
+
+        .btn-orange:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+        }
+
+        .error-box {
+            background: #fee2e2;
+            color: var(--accent-red);
+            padding: 3.75px 5.25px;
+            border-radius: 2.25px;
+            margin-top: 4.5px;
+            display: none;
+            font-weight: 600;
+            font-size: 0.525rem;
+            border-left: 2.25px solid var(--accent-red);
+        }
+
+        .success-box {
+            background: #d1fae5;
+            color: var(--accent-green);
+            padding: 3.75px 5.25px;
+            border-radius: 2.25px;
+            margin-top: 4.5px;
+            display: none;
+            font-weight: 600;
+            font-size: 0.525rem;
+            border-left: 2.25px solid var(--accent-green);
+        }
+
+        .notification-box {
+            background: #fef3c7;
+            color: #d97706;
+            padding: 7.5px;
+            border-radius: 4.5px;
+            margin-top: 7.5px;
+            font-weight: 600;
+            font-size: 0.525rem;
+            text-align: center;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .quiz-notification {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: white;
+            padding: 11.25px;
+            border-radius: 7.5px;
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            display: none;
+            max-width: 225px;
+            border-left: 3.75px solid var(--accent-green);
+            animation: slideInRight 0.3s ease;
+            transform: translateX(100%);
+        }
+
+        .quiz-notification.show {
+            display: block;
+            transform: translateX(0);
+        }
+
+        .quiz-notification.warning {
+            border-left-color: var(--accent-orange);
+        }
+
+        .quiz-notification.error {
+            border-left-color: var(--accent-red);
+        }
+
+        .quiz-notification-content {
+            display: flex;
+            flex-direction: column;
+            gap: 7.5px;
+        }
+
+        .quiz-notification-title {
+            font-weight: 700;
+            font-size: 0.6rem;
+            color: var(--dark-blue);
+        }
+
+        .quiz-notification-message {
+            font-size: 0.525rem;
+            color: #4b5563;
+        }
+
+        .quiz-notification-actions {
+            display: flex;
+            gap: 6px;
+            justify-content: flex-end;
+        }
+
+        .quiz-notification-btn {
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 0.4875rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .quiz-notification-btn.primary {
+            background: var(--gradient-blue);
+            color: white;
+        }
+
+        .quiz-notification-btn.secondary {
+            background: #f3f4f6;
+            color: #4b5563;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .main-page-buttons {
+            display: grid;
+            gap: 6px;
+            margin-top: 9px;
+        }
+
+        .quiz-access-section {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 9px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            padding-bottom: 4.5px;
+            border-bottom: 1.5px solid var(--light-blue);
+        }
+
+        .quiz-title-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.25px;
+            width: 80%;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.525rem;
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .timer-container {
+            display: flex;
+            gap: 4.5px;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .timer, .question-timer {
+            background: var(--gradient-blue);
+            color: white;
+            padding: 2.25px 4.5px;
+            border-radius: 7.5px;
+            font-weight: 700;
+            font-size: 0.525rem;
+            box-shadow: var(--shadow);
+            white-space: nowrap;
+        }
+
+        .timer.total-timer {
+            background: var(--gradient-orange);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4.5px;
+            background: #e5e7eb;
+            border-radius: 2.25px;
+            overflow: hidden;
+            margin-bottom: 6px;
+            box-shadow: var(--shadow);
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 2.25px;
+            transition: width 0.4s ease;
+            background: var(--gradient-vibrant);
+        }
+
+        .question-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(10.5px, 1fr));
+            gap: 2.25px;
+            margin-bottom: 6px;
+        }
+
+        .question-nav-item {
+            width: 10.5px;
+            height: 10.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2.25px;
+            font-weight: 700;
+            font-size: 0.375rem;
+            cursor: pointer;
+            background: white;
+            border: 1.5px solid var(--light-blue);
+            transition: all 0.2s;
+        }
+
+        .question-nav-item.current {
+            background: var(--gradient-vibrant);
+            color: white;
+            border-color: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        .question-nav-item.solved {
+            background: var(--gradient-green);
+            color: white;
+            border-color: var(--accent-green);
+        }
+
+        .question-nav-item.visited {
+            background: var(--gradient-orange);
+            color: white;
+            border-color: var(--accent-orange);
+        }
+
+        .question-container {
+            margin-bottom: 6px;
+        }
+
+        .question-text {
+            font-size: 0.5625rem;
+            font-weight: 700;
+            margin-bottom: 4.5px;
+            color: var(--dark-blue);
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3px;
+            margin-bottom: 6px;
+        }
+
+        .option {
+            padding: 3.75px 6px;
+            border: 1.5px solid var(--light-blue);
+            border-radius: 3.75px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            background: #f8fafc;
+            font-size: 0.525rem;
+            position: relative;
+        }
+
+        .option:hover {
+            border-color: var(--primary-blue);
+            background: #e0f2fe;
+            transform: translateY(-1px);
+        }
+
+        .option.selected {
+            border-color: var(--primary-blue);
+            background: #dbeafe;
+        }
+
+        .option.correct {
+            border-color: var(--accent-green);
+            background: #d1fae5;
+        }
+
+        .option.incorrect {
+            border-color: var(--accent-red);
+            background: #fee2e2;
+        }
+
+        .option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .reasoning {
+            background: #f8fafc;
+            border-radius: 3.75px;
+            padding: 6px;
+            margin-top: 6px;
+            display: none;
+            border-left: 2.25px solid var(--primary-blue);
+            font-size: 0.525rem;
+        }
+
+        .reasoning-title {
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: var(--dark-blue);
+            font-size: 0.5625rem;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 9px;
+        }
+
+        .nav-btn {
+            padding: 3.75px 5.25px;
+            border-radius: 3.75px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-size: 0.525rem;
+            display: flex;
+            align-items: center;
+            gap: 2.25px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-back {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: white;
+        }
+
+        .btn-reasoning {
+            background: var(--gradient-purple);
+            color: white;
+        }
+
+        .btn-reasoning.disabled {
+            background: #dc3545;
+            color: white;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-reasoning.disabled:hover {
+            background: #dc3545;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-submit {
+            background: var(--gradient-green);
+            color: white;
+        }
+
+        .results-header-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 3.75px;
+            margin-bottom: 9px;
+        }
+
+        .results-header-buttons .btn {
+            padding: 3px 4.5px;
+            font-size: 0.4875rem;
+            width: 100%;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+            border-radius: 6px;
+            padding: 9px;
+            text-align: center;
+            margin-bottom: 9px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-vibrant);
+        }
+
+        .result-card h2 {
+            font-size: 0.675rem;
+            margin-bottom: 6px;
+            color: var(--dark-blue);
+        }
+
+        .result-card table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.525rem;
+            margin-top: 6px;
+            box-shadow: var(--shadow);
+        }
+
+        .result-card th, .result-card td {
+            padding: 3.75px;
+            border: 1px solid #dbeafe;
+            text-align: left;
+        }
+
+        .result-card th {
+            background-color: var(--light-blue);
+            font-weight: 600;
+        }
+
+        .result-card td {
+            background-color: #f8fafc;
+        }
+
+        .result-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 4.5px;
+            margin-top: 9px;
+        }
+
+        .all-mcqs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 11.25px;
+        }
+
+        .all-mcq-item {
+            padding: 7.5px;
+            border: 1px solid var(--light-blue);
+            border-radius: 6px;
+            background: #f8fafc;
+            position: relative;
+        }
+
+        .all-mcq-item .question-text {
+            color: var(--dark-blue);
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+
+        .all-mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 4.5px;
+        }
+
+        .all-mcq-option {
+            font-size: 0.525rem;
+            padding: 3px 4.5px;
+            border-radius: 3px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .all-mcq-option.correct {
+            background: #d1fae5;
+            color: var(--accent-green);
+            font-weight: 600;
+            border-color: #a7f3d0;
+        }
+
+        .all-mcq-reasoning {
+            margin-top: 6px;
+            font-size: 0.525rem;
+            color: #4b5563;
+            padding: 6px;
+            background: #f8fafc;
+            border-radius: 3px;
+            border-left: 2.25px solid var(--primary-blue);
+        }
+
+        .all-mcq-reasoning strong {
+            color: var(--dark-blue);
+        }
+
+        .quick-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            gap: 6px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: white;
+            border-radius: 4.5px;
+            padding: 6px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 2px solid var(--primary-blue);
+        }
+
+        .stat-card.correct {
+            border-top-color: var(--accent-green);
+        }
+
+        .stat-card.incorrect {
+            border-top-color: var(--accent-red);
+        }
+
+        .stat-card.unanswered {
+            border-top-color: var(--accent-orange);
+        }
+
+        .stat-value {
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 1.5px;
+        }
+
+        .stat-label {
+            font-size: 0.4875rem;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .performance-meter {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 6px 0;
+        }
+
+        .performance-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+            background: var(--gradient-vibrant);
+        }
+
+        @media (max-width: 768px) {
+            .quiz-header {
+                flex-direction: column;
+                gap: 4.5px;
+                align-items: flex-start;
+            }
+            
+            .navigation-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .timer-container {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 3.75px;
+                justify-content: flex-end;
+                width: 100%;
+            }
+            
+            .quiz-title-container {
+                width: 100%;
+            }
+            
+            .result-actions {
+                flex-direction: column;
+            }
+            
+            .promo-banner {
+                padding: 9px;
+            }
+            
+            .promo-banner h2 {
+                font-size: 0.6rem;
+            }
+            
+            .promo-banner p {
+                font-size: 0.4125rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-notification" id="quiz-notification">
+        <div class="quiz-notification-content">
+            <div class="quiz-notification-title" id="notification-title">Quiz Progress Found</div>
+            <div class="quiz-notification-message" id="notification-message">You have an unfinished quiz. Do you want to continue where you left off?</div>
+            <div class="quiz-notification-actions">
+                <button class="quiz-notification-btn secondary" id="notification-no">Start Fresh</button>
+                <button class="quiz-notification-btn primary" id="notification-yes">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="logo">
+            <h1>WHITE COAT WARRIORS</h1>
+            <p>Excellence in Educational Assessment</p>
+        </div>
+
+        <div id="signin-page" class="page active">
+            <div class="promo-banner">
+                <h2><i class="fas fa-graduation-cap"></i> Unlock Your Potential with WHITE COAT WARRIORS</h2>
+                <p>Boost your preparation with WHITE COAT WARRIORS's realistic online tests, crafted by experts to mirror the actual exam's pattern and challenge. Experience instant feedback, detailed analysis, and flexible online access – your pathway to confidence and success!</p>
+            </div>
+            
+            <h2><i class="fas fa-lock"></i> Access Test</h2>
+            <p>Sign in or use your access code</p>
+            
+            <div class="main-page-buttons">
+                <button class="btn btn-primary" onclick="showQuizAccessForm()">
+                    <i class="fas fa-key"></i>
+                    <span>Sign In with Quiz Access Code</span>
+                </button>
+                <button class="btn btn-primary" onclick="showRegistrationPage()">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up to Get Quiz Access</span>
+                </button>
+                <button class="btn btn-purple" onclick="showDeveloperAccessForm()">
+                    <i class="fas fa-code"></i>
+                    <span>Developer Access</span>
+                </button>
+            </div>
+            
+            <div id="developer-access-form" class="quiz-access-section">
+                <h3><i class="fas fa-user-secret"></i> Developer Login</h3>
+                <div class="password-container input-container">
+                    <input type="password" id="developerPassword" class="form-input" placeholder="Enter the Developer Password">
+                    <i class="fas fa-eye-slash input-icon" id="toggleDeveloperPassword"></i>
+                </div>
+                <button class="btn btn-purple" onclick="checkDeveloperPassword()">
+                    <span>Log In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <div id="dev-error-box" class="error-box">
+                    <i class="fas fa-exclamation-circle"></i> Invalid developer password.
+                </div>
+            </div>
+            
+            <div id="quiz-access-form" class="quiz-access-section">
+                <h3><i class="fas fa-key"></i> Enter Quiz Access Code</h3>
+                <div class="password-container input-container">
+                    <input type="password" id="quizAccessCode" class="form-input" placeholder="Enter your 12-Digit Quiz Access Code here">
+                    <i class="fas fa-eye-slash input-icon" id="toggleQuizAccessCode"></i>
+                </div>
+                <button class="btn btn-primary" onclick="accessQuiz(document.getElementById('quizAccessCode').value)">
+                    <span>Access Quiz</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <div id="quiz-error-box" class="error-box">
+                    <i class="fas fa-exclamation-circle"></i> Invalid quiz access code.
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="registration-page" class="page">
+            <div class="promo-banner">
+                <h2><i class="fas fa-graduation-cap"></i> Unlock Your Potential with WHITE COAT WARRIORS</h2>
+                <p>Boost your preparation with WHITE COAT WARRIORS's realistic online tests, crafted by experts to mirror the actual exam's pattern and challenge. Experience instant feedback, detailed analysis, and flexible online access – your pathway to confidence and success!</p>
+            </div>
+            
+            <h2><i class="fas fa-user-edit"></i> Student Registration</h2>
+            <p>Please provide your details to register</p>
+            
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-user"></i> Student Name</label>
+                <input type="text" id="studentName" class="form-input" placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-user-friends"></i> Father Name</label>
+                <input type="text" id="fatherName" class="form-input" placeholder="Enter your father's name">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" class="form-input" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-phone"></i> Mobile Number (WhatsApp)</label>
+                <input type="tel" id="mobile" class="form-input" placeholder="+92XXXXXXXXXX">
+            </div>
+            <div class="form-group">
+                <label class="form-label"><i class="fas fa-city"></i> City / District</label>
+                <input type="text" id="city" class="form-input" placeholder="Enter your city/district">
+            </div>
+            <button class="btn btn-primary" onclick="handleRegistration()">
+                <span>Submit to Get Access to Quiz</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-red" style="margin-top: 3.75px;" onclick="showPage('signin-page')">
+                <i class="fas fa-chevron-left"></i> Back to Home
+            </button>
+        </div>
+
+        <div id="quiz-page" class="page">
+            <div class="promo-banner">
+                <h2><i class="fas fa-graduation-cap"></i> Unlock Your Potential with WHITE COAT WARRIORS</h2>
+                <p>Boost your preparation with WHITE COAT WARRIORS's realistic online tests, crafted by experts to mirror the actual exam's pattern and challenge. Experience instant feedback, detailed analysis, and flexible online access – your pathway to confidence and success!</p>
+            </div>
+
+            <div class="quiz-header">
+                <div class="quiz-title-container">
+                    <h2 id="quiz-title"></h2>
+                    <div class="quiz-info">
+                        <span><i class="fas fa-book"></i> Subject: <span id="quiz-subject">Logical Reasoning</span></span>
+                        <span><i class="fas fa-clock"></i> Per MCQ: <span id="per-mcq-time">1</span> Minute</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timer-container">
+                <div class="timer" id="question-timer">60</div>
+                <div class="timer total-timer" id="timer">50:00</div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="quiz-progress"></div>
+            </div>
+
+            <div class="question-nav" id="question-nav"></div>
+            
+            <div class="question-container">
+                <div class="question-text" id="question-text"></div>
+                <div class="options-container" id="options-container"></div>
+                <div class="reasoning" id="reasoning">
+                    <div class="reasoning-title"><i class="fas fa-lightbulb"></i> Explanation:</div>
+                    <div id="reasoning-text"></div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-btn btn-back" onclick="navigateQuestion('prev')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button class="nav-btn btn-next" onclick="navigateQuestion('next')">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="nav-btn btn-reasoning disabled" id="reasoning-btn" onclick="toggleReasoning()">
+                    <i class="fas fa-lightbulb"></i> Reasoning
+                </button>
+                <button class="nav-btn btn-submit" onclick="submitTest()">
+                    Submit <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="results-page" class="page">
+            <div class="results-header-buttons">
+                <a id="website-link" href="#" target="_blank" class="btn btn-primary"><i class="fas fa-globe"></i> Website</a>
+                <a id="whatsapp-contact-link" href="#" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp Contact</a>
+                <a id="whatsapp-community-link" href="#" target="_blank" class="btn btn-whatsapp"><i class="fas fa-users"></i> Whatsapp Community</a>
+            </div>
+            
+            <div class="quick-stats">
+                <div class="stat-card correct">
+                    <div class="stat-value" id="correct-count">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-card incorrect">
+                    <div class="stat-value" id="incorrect-count">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-card unanswered">
+                    <div class="stat-value" id="unanswered-count">0</div>
+                    <div class="stat-label">Unanswered</div>
+                </div>
+            </div>
+            
+            <div class="performance-meter">
+                <div class="performance-fill" id="performance-fill"></div>
+            </div>
+            
+            <div class="result-card">
+                <h2><i class="fas fa-user-graduate"></i> Student Information</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-info-table"></tbody>
+                </table>
+            </div>
+
+            <div class="result-card">
+                <h2><i class="fas fa-chart-bar"></i> Test Results</h2>
+                <table>
+                    <tbody id="quiz-results-table"></tbody>
+                </table>
+            </div>
+            
+            <div class="result-actions">
+                <button class="btn btn-primary" onclick="restartTest()">
+                    <i class="fas fa-redo"></i> Retake Full Test
+                </button>
+                <button class="btn btn-primary" onclick="retakeIncorrect()">
+                    <i class="fas fa-bolt"></i> Retake Incorrect Questions
+                </button>
+                <button class="btn btn-primary" onclick="viewAllMcqs()">
+                    <i class="fas fa-clipboard-list"></i> View All MCQs
+                </button>
+            </div>
+        </div>
+
+        <div id="all-mcqs-page" class="page">
+            <h2><i class="fas fa-list-alt"></i> All MCQs and Solutions</h2>
+            <div class="all-mcqs-list" id="all-mcqs-list"></div>
+            <button class="btn btn-primary" onclick="showPage('results-page')">
+                <i class="fas fa-arrow-left"></i> Back to Results
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // ***************************************************************
+        // !! IMPORTANT: GOOGLE APPS SCRIPT URL FOR DATA LOGGING !!
+        const SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytFFLl5Lpcl0PInTsVNvypwcdlP7M5YEK5CVQqHxQq3TTPYWkeMH701JpIa5Yd-Rs/exec';
+        // ***************************************************************
+
+        // Quiz Data - Updated with 50 new MCQs for Logical Reasoning
+        const quizData_WCW_LR_04 = [
+            {
+                question: "Statement: The government has decided to increase the tax on luxury goods to boost revenue. Assumption I: Luxury goods are purchased mainly by affluent sections of society. Assumption II: Increasing tax on luxury goods will not significantly reduce their consumption.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "Assumption I is implicit because the government expects to boost revenue by taxing luxury goods, implying they believe affluent sections will continue purchasing them despite the tax increase. Assumption II is not necessarily implicit as the government might be willing to accept some reduction in consumption if it leads to higher revenue per unit."
+            },
+            {
+                question: "Statement: If it rains, the match will be cancelled. The match was not cancelled. Assumption I: It did not rain. Assumption II: The match organizers followed the rules.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is a classic modus tollens argument. From 'If P then Q' and 'Not Q', we can infer 'Not P'. Therefore, Assumption I is implicit. Assumption II is not necessarily implicit as there could be other reasons why the match wasn't cancelled even if it rained (e.g., the rules were not followed)."
+            },
+            {
+                question: "Statement: All philosophers are thinkers. Some thinkers are writers. Assumption I: Some writers are philosophers. Assumption II: Some philosophers are writers.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 3,
+                reasoning: "From 'All philosophers are thinkers' and 'Some thinkers are writers', we cannot conclude that any writers are philosophers. This would commit the fallacy of the undistributed middle. The thinkers who are writers might be entirely separate from the philosophers. Therefore, neither assumption is necessarily implicit."
+            },
+            {
+                question: "Statement: To improve road safety, the traffic department has decided to install speed cameras on all major highways. Assumption I: Speed cameras are effective in reducing accidents. Assumption II: Major highways have significant speeding problems.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Both I and II are implicit"
+                ],
+                correctAnswer: 3,
+                reasoning: "Both assumptions are implicit. The department assumes speed cameras are effective (I) and that major highways have speeding problems worth addressing (II). Without these assumptions, the decision would not make logical sense."
+            },
+            {
+                question: "Statement: Either the manager is incompetent or the team is underperforming. The team is performing well. Assumption I: The manager is incompetent. Assumption II: The team is not underperforming.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is a disjunctive syllogism. From 'Either P or Q' and 'Not Q', we can validly infer 'P'. Since the team is performing well (not underperforming), we can conclude the manager is incompetent. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: If the company invests in research, it will develop new products. The company did not invest in research. Assumption I: The company will not develop new products. Assumption II: The company might develop new products through other means.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of denying the antecedent. From 'If P then Q' and 'Not P', we cannot validly conclude 'Not Q'. The company might develop new products through other means (e.g., partnerships, acquisitions). Therefore, only Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: No poets are accountants. Some accountants are musicians. Assumption I: Some musicians are not poets. Assumption II: Some poets are musicians.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'No poets are accountants' and 'Some accountants are musicians', we can validly conclude that 'Some musicians are not poets' (via the conversion and obversion of premises). However, we cannot conclude that 'Some poets are musicians' as there might be no overlap between poets and musicians. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: The university will introduce online courses only if there is sufficient student demand. The university is introducing online courses. Assumption I: There is sufficient student demand. Assumption II: Online courses are beneficial for students.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is modus ponens. From 'Only if P then Q' and 'Q', we can validly infer 'P'. Therefore, Assumption I is implicit. Assumption II is not necessarily implicit as the university might be introducing online courses solely due to demand, regardless of perceived benefits."
+            },
+            {
+                question: "Statement: All successful entrepreneurs take calculated risks. Sarah takes calculated risks. Assumption I: Sarah is a successful entrepreneur. Assumption II: Some people who take calculated risks are successful entrepreneurs.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'All P are Q' and 'Q', we cannot validly conclude 'P'. However, from 'All P are Q', we can validly conclude 'Some Q are P' by conversion. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the economy grows, then employment increases. Employment has not increased. Assumption I: The economy has not grown. Assumption II: There are other factors affecting employment.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 2,
+                reasoning: "This is modus tollens. From 'If P then Q' and 'Not Q', we can validly infer 'Not P'. Therefore, Assumption I is implicit. However, Assumption II might also be considered implicit as it acknowledges that the relationship between economic growth and employment might not be straightforward. In logical terms, only I is strictly implicit, but in practical reasoning, II might also be considered."
+            },
+            {
+                question: "Statement: All mammals are warm-blooded. Whales are mammals. Assumption I: Whales are warm-blooded. Assumption II: Some warm-blooded animals are not mammals.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is a categorical syllogism in Barbara form (All M are P, All S are M, therefore All S are P). Therefore, Assumption I is validly implicit. Assumption II is not necessarily implicit from the given premises, as we don't have information about whether there are warm-blooded animals that are not mammals."
+            },
+            {
+                question: "Statement: Either the company will expand its product line or it will focus on marketing existing products. The company is not expanding its product line. Assumption I: The company will focus on marketing existing products. Assumption II: The company might do both.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is a disjunctive syllogism. From 'Either P or Q' and 'Not P', we can validly infer 'Q'. Therefore, Assumption I is implicit. Assumption II contradicts the exclusive nature of 'either...or' in this context, so it is not implicit."
+            },
+            {
+                question: "Statement: If the team wins the championship, then each player will receive a bonus. Some players did not receive a bonus. Assumption I: The team did not win the championship. Assumption II: Some players might have received bonuses for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 3,
+                reasoning: "This commits the fallacy of denying the antecedent in a distributed way. From 'If P then Q' and 'Not all Q', we cannot validly conclude 'Not P'. The team might have won the championship but not given bonuses to all players for various reasons. Therefore, neither assumption is necessarily implicit."
+            },
+            {
+                question: "Statement: No politicians are completely honest. Some honest people are successful. Assumption I: Some successful people are not politicians. Assumption II: Some politicians are successful.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'No politicians are completely honest' and 'Some honest people are successful', we can validly conclude that 'Some successful people are not politicians' (via obversion and conversion). However, we cannot conclude that 'Some politicians are successful' as there might be no successful politicians. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: All effective leaders are good communicators. Some managers are good communicators. Assumption I: Some managers are effective leaders. Assumption II: Some good communicators are not effective leaders.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the product is successful, then the company will launch a sequel. The company is launching a sequel. Assumption I: The product was successful. Assumption II: The company might launch sequels for unsuccessful products.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 2,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude the possibility that the company might launch sequels for other reasons, so Assumption II could be considered implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All birds have feathers. Penguins are birds. Assumption I: Penguins have feathers. Assumption II: Some animals with feathers are not birds.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is a valid categorical syllogism (Barbara form). Therefore, Assumption I is implicit. Assumption II is not necessarily implicit from the given premises, as we don't have information about whether there are other animals with feathers."
+            },
+            {
+                question: "Statement: If the patient takes the medicine, then they will recover. The patient did not recover. Assumption I: The patient did not take the medicine. Assumption II: There might be other reasons why the patient didn't recover.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 2,
+                reasoning: "This is modus tollens. From 'If P then Q' and 'Not Q', we can validly infer 'Not P'. Therefore, Assumption I is implicit. However, in medical contexts, we often acknowledge multiple causal factors, so Assumption II might also be considered implicit as it acknowledges other possible reasons for non-recovery."
+            },
+            {
+                question: "Statement: No reptiles are warm-blooded. Some snakes are reptiles. Assumption I: Some snakes are not warm-blooded. Assumption II: Some warm-blooded animals are not reptiles.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'No reptiles are warm-blooded' and 'Some snakes are reptiles', we can validly conclude that 'Some snakes are not warm-blooded'. However, we cannot conclude that 'Some warm-blooded animals are not reptiles' as we don't have information about whether there are warm-blooded animals at all. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: All philosophers question assumptions. Some scientists question assumptions. Assumption I: Some scientists are philosophers. Assumption II: Some who question assumptions are not philosophers.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the company meets its sales target, then employees will get bonuses. Employees got bonuses. Assumption I: The company met its sales target. Assumption II: Employees might get bonuses for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other reasons for bonuses, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All diamonds are precious stones. Some precious stones are expensive. Assumption I: Some diamonds are expensive. Assumption II: Some expensive things are not diamonds.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some Q are R', we cannot validly conclude 'Some P are R'. However, from 'Some Q are R', we know that there are some expensive precious stones, and since not all precious stones are diamonds (we don't know this from the premises), it's possible that the expensive ones are not diamonds. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If it is raining, then the streets are wet. The streets are not wet. Assumption I: It is not raining. Assumption II: There might be another reason why the streets are wet.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is modus tollens. From 'If P then Q' and 'Not Q', we can validly infer 'Not P'. Therefore, Assumption I is implicit. Assumption II is not relevant to the logical inference being made."
+            },
+            {
+                question: "Statement: No birds are mammals. All bats are mammals. Assumption I: No bats are birds. Assumption II: Some mammals are not bats.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'No birds are mammals' and 'All bats are mammals', we can validly conclude that 'No bats are birds' (via the contrapositive and obversion). However, we cannot conclude that 'Some mammals are not bats' as we don't have information about whether there are other mammals besides bats. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: All politicians are public figures. Some celebrities are public figures. Assumption I: Some celebrities are politicians. Assumption II: Some public figures are not politicians.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the team practices regularly, they will win the tournament. The team won the tournament. Assumption I: The team practiced regularly. Assumption II: The team might have won for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other paths to victory, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All roses are flowers. Some flowers are red. Assumption I: Some roses are red. Assumption II: Some red things are not roses.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some Q are R', we cannot validly conclude 'Some P are R'. However, from 'Some Q are R', we know that there are some red flowers, and since not all flowers are roses (we don't know this from the premises), it's possible that the red ones are not roses. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the package is delivered today, then the customer will be satisfied. The customer is not satisfied. Assumption I: The package was not delivered today. Assumption II: The customer might be dissatisfied for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "This is modus tollens. From 'If P then Q' and 'Not Q', we can validly infer 'Not P'. Therefore, Assumption I is implicit. Assumption II is not relevant to the logical inference being made."
+            },
+            {
+                question: "Statement: No fish are mammals. All dolphins are mammals. Assumption I: No dolphins are fish. Assumption II: Some mammals are not dolphins.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'No fish are mammals' and 'All dolphins are mammals', we can validly conclude that 'No dolphins are fish' (via the contrapositive and obversion). However, we cannot conclude that 'Some mammals are not dolphins' as we don't have information about whether there are other mammals besides dolphins. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: All lawyers have law degrees. Some professors have law degrees. Assumption I: Some professors are lawyers. Assumption II: Some with law degrees are not lawyers.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the company invests in training, productivity will increase. Productivity increased. Assumption I: The company invested in training. Assumption II: Productivity might have increased for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other factors affecting productivity, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All triangles have three sides. Some polygons have three sides. Assumption I: Some polygons are triangles. Assumption II: Some three-sided figures are not triangles.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "In this case, the statement 'Some polygons have three sides' actually means there are polygons with exactly three sides, which by definition are triangles. Therefore, Assumption I is implicit. Assumption II is false in this context as any three-sided polygon is by definition a triangle."
+            },
+            {
+                question: "Statement: If the patient has a fever, then they have an infection. The patient does not have a fever. Assumption I: The patient does not have an infection. Assumption II: The patient might have an infection without a fever.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of denying the antecedent. From 'If P then Q' and 'Not P', we cannot validly conclude 'Not Q'. Therefore, Assumption I is not necessarily implicit. However, in medical contexts, we know that infections don't always cause fevers, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: No reptiles are warm-blooded. All birds are warm-blooded. Assumption I: No birds are reptiles. Assumption II: Some warm-blooded animals are not birds.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'No reptiles are warm-blooded' and 'All birds are warm-blooded', we can validly conclude that 'No birds are reptiles' (via conversion and obversion). However, we cannot conclude that 'Some warm-blooded animals are not birds' as we don't have information about whether there are other warm-blooded animals besides birds. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: All doctors have medical degrees. Some researchers have medical degrees. Assumption I: Some researchers are doctors. Assumption II: Some with medical degrees are not doctors.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the company reduces prices, sales will increase. Sales increased. Assumption I: The company reduced prices. Assumption II: Sales might have increased for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other factors affecting sales, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All squares are rectangles. Some quadrilaterals are rectangles. Assumption I: Some quadrilaterals are squares. Assumption II: Some rectangles are not squares.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the student studies hard, they will pass the exam. The student passed the exam. Assumption I: The student studied hard. Assumption II: The student might have passed without studying hard.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other ways to pass the exam, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: No insects have backbones. All spiders are insects. Assumption I: No spiders have backbones. Assumption II: Some animals without backbones are not insects.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 3,
+                reasoning: "From 'No insects have backbones' and 'All spiders are insects', we can validly conclude that 'No spiders have backbones'. Therefore, Assumption I is implicit. However, the second premise 'All spiders are insects' is actually false in reality (spiders are arachnids, not insects), but based on the given premises, Assumption I follows. Assumption II is not necessarily implicit as we don't have information about other animals without backbones."
+            },
+            {
+                question: "Statement: All politicians are persuasive. Some speakers are persuasive. Assumption I: Some speakers are politicians. Assumption II: Some persuasive people are not politicians.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the team has good coordination, they will win the game. The team won the game. Assumption I: The team had good coordination. Assumption II: The team might have won without good coordination.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other factors leading to victory, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All metals conduct electricity. Some non-metals conduct electricity. Assumption I: Some conductors are not metals. Assumption II: Some metals do not conduct electricity.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'All metals conduct electricity' and 'Some non-metals conduct electricity', we can validly conclude that 'Some conductors are not metals' (since there are non-metals that conduct electricity). However, we cannot conclude that 'Some metals do not conduct electricity' as the first premise states that all metals do conduct electricity. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: If the product is defective, it will be returned. The product was not returned. Assumption I: The product was not defective. Assumption II: Some defective products might not be returned.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 2,
+                reasoning: "This is modus tollens. From 'If P then Q' and 'Not Q', we can validly infer 'Not P'. Therefore, Assumption I is implicit. However, in practical situations, we know that not all defective products are returned (customers might not bother, etc.), so Assumption II might also be considered implicit as it acknowledges this reality."
+            },
+            {
+                question: "Statement: No planets are stars. All stars are celestial bodies. Assumption I: No planets are celestial bodies. Assumption II: Some celestial bodies are not stars.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "From 'No planets are stars' and 'All stars are celestial bodies', we cannot conclude that 'No planets are celestial bodies' as planets might also be celestial bodies. In fact, we know planets are celestial bodies. However, from 'All stars are celestial bodies', we know that the category 'stars' is entirely within 'celestial bodies', but since there are other celestial bodies (like planets, asteroids, etc.), 'Some celestial bodies are not stars' is necessarily true. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: All mathematicians are logical. Some philosophers are logical. Assumption I: Some philosophers are mathematicians. Assumption II: Some logical people are not mathematicians.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the company innovates, it will grow. The company is growing. Assumption I: The company is innovating. Assumption II: The company might be growing for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other growth factors, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All birds have feathers. Some animals with feathers can fly. Assumption I: Some birds cannot fly. Assumption II: Some flying animals are not birds.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "From 'All birds have feathers' and 'Some animals with feathers can fly', we cannot conclude that 'Some birds cannot fly' as we don't have information about the flying capabilities of birds. However, from 'Some animals with feathers can fly', we know there are flying animals with feathers, and since not all animals with feathers are birds (we know this from common knowledge, though not strictly from the premises), it's possible that some of these flying animals are not birds. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the patient takes the medication, symptoms will improve. Symptoms improved. Assumption I: The patient took the medication. Assumption II: Symptoms might have improved for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, in medical contexts, we acknowledge that symptoms can improve for various reasons, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: No reptiles are warm-blooded. All mammals are warm-blooded. Assumption I: No mammals are reptiles. Assumption II: Some warm-blooded animals are not mammals.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 0,
+                reasoning: "From 'No reptiles are warm-blooded' and 'All mammals are warm-blooded', we can validly conclude that 'No mammals are reptiles' (via conversion and obversion). However, we cannot conclude that 'Some warm-blooded animals are not mammals' as we don't have information about whether there are other warm-blooded animals besides mammals. Therefore, only Assumption I is implicit."
+            },
+            {
+                question: "Statement: All engineers are problem-solvers. Some managers are problem-solvers. Assumption I: Some managers are engineers. Assumption II: Some problem-solvers are not engineers.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            },
+            {
+                question: "Statement: If the company focuses on quality, customer satisfaction will increase. Customer satisfaction increased. Assumption I: The company focused on quality. Assumption II: Customer satisfaction might have increased for other reasons.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of affirming the consequent. From 'If P then Q' and 'Q', we cannot validly conclude 'P'. Therefore, Assumption I is not necessarily implicit. However, the statement doesn't preclude other factors affecting customer satisfaction, so Assumption II is implicit as it acknowledges this possibility."
+            },
+            {
+                question: "Statement: All squares are rectangles. Some quadrilaterals are rectangles. Assumption I: Some quadrilaterals are squares. Assumption II: Some rectangles are not squares.",
+                options: [
+                    "A. Only I is implicit",
+                    "B. Only II is implicit",
+                    "C. Either I or II is implicit",
+                    "D. Neither I nor II is implicit"
+                ],
+                correctAnswer: 1,
+                reasoning: "This commits the fallacy of the undistributed middle. From 'All P are Q' and 'Some S are Q', we cannot validly conclude 'Some S are P'. However, from 'All P are Q', we know that the category P is entirely within Q, but Q extends beyond P, so 'Some Q are not P' is necessarily true if there is at least one Q. Therefore, only Assumption II is implicit."
+            }
+        ];
+
+        // Constants
+        const QUIZ_ACCESS_CODE = "PreMium-A-12345";
+        const DEV_ACCESS_CODE = "Dev-PDA-001";
+        const ACADEMY_NAME = "WHITE COAT WORRIORS ";
+        const QUIZ_SUBJECT = "Logical Reasoning ";
+        const WEBSITE_LINK = "https://premiumdoctoracademy.com";
+        const WHATSAPP_CONTACT = "03287743851";
+        const WHATSAPP_COMMUNITY = "https://whatsapp.com/channel/0029VaFCIU6EquiOlXWcNR1X";
+        const TIME_PER_MCQ = 60;
+        const MARK_PER_MCQ = 1;
+        const NEGATIVE_MARKING = 0;
+
+        // Global state variables
+        let currentQuizId = 'WCW-LR-04';
+        let quizData = quizData_WCW_LR_04;
+        let currentQuestion = 0;
+        let userAnswers = Array(quizData.length).fill(null);
+        let timeLeft;
+        let questionTimeLeft;
+        let totalTimeInterval;
+        let questionTimeInterval;
+        let studentData = {};
+        let studentAccessCode = "";
+
+        // DOM elements
+        const questionNavEl = document.getElementById('question-nav');
+        const questionTextEl = document.getElementById('question-text');
+        const optionsContainerEl = document.getElementById('options-container');
+        const reasoningEl = document.getElementById('reasoning');
+        const reasoningTextEl = document.getElementById('reasoning-text');
+        const quizTitleEl = document.getElementById('quiz-title');
+        const quizSubjectEl = document.getElementById('quiz-subject');
+        const perMcqTimeEl = document.getElementById('per-mcq-time');
+        const totalTimerEl = document.getElementById('timer');
+        const questionTimerEl = document.getElementById('question-timer');
+        const quizProgressEl = document.getElementById('quiz-progress');
+        const studentInfoTable = document.getElementById('student-info-table');
+        const quizResultsTable = document.getElementById('quiz-results-table');
+        const allMcqsList = document.getElementById('all-mcqs-list');
+        const devPasswordInput = document.getElementById('developerPassword');
+        const devErrorBox = document.getElementById('dev-error-box');
+        const quizAccessCodeInput = document.getElementById('quizAccessCode');
+        const quizAccessErrorBox = document.getElementById('quiz-error-box');
+        const toggleDevPasswordIcon = document.getElementById('toggleDeveloperPassword');
+        const toggleQuizCodeIcon = document.getElementById('toggleQuizAccessCode');
+        const websiteLinkEl = document.getElementById('website-link');
+        const whatsappContactLinkEl = document.getElementById('whatsapp-contact-link');
+        const whatsappCommunityLinkEl = document.getElementById('whatsapp-community-link');
+        const reasoningBtn = document.getElementById('reasoning-btn');
+        const quizNotificationEl = document.getElementById('quiz-notification');
+        const notificationTitleEl = document.getElementById('notification-title');
+        const notificationMessageEl = document.getElementById('notification-message');
+        const notificationYesBtn = document.getElementById('notification-yes');
+        const notificationNoBtn = document.getElementById('notification-no');
+        const correctCountEl = document.getElementById('correct-count');
+        const incorrectCountEl = document.getElementById('incorrect-count');
+        const unansweredCountEl = document.getElementById('unanswered-count');
+        const performanceFillEl = document.getElementById('performance-fill');
+
+        /**
+         * @description Sends data to the Google Apps Script endpoint.
+         * @param {object} data - The payload containing type ('registration' or 'quiz_result') and data.
+         */
+        function sendDataToSheet(data) {
+            if (!SHEET_SCRIPT_URL || SHEET_SCRIPT_URL.includes('YOUR_DEPLOYED_WEB_APP_URL')) {
+                console.error('SHEET_SCRIPT_URL is not configured. Data not sent to Google Sheet.');
+                return Promise.resolve({ success: false, message: 'Script URL not configured.' });
+            }
+
+            return fetch(SHEET_SCRIPT_URL, {
+                method: 'POST',
+                // 'no-cors' is necessary for Apps Script to accept cross-origin POST requests from a web page
+                mode: 'no-cors',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                // Cannot read response body with 'no-cors', assume request was sent successfully
+                return { success: true, message: 'Request sent to Google Script.' };
+            })
+            .catch(error => {
+                console.error('Sheet Data Send Error:', error);
+                return { success: false, message: 'Failed to send request to Google Script.' };
+            });
+        }
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedStudentData = localStorage.getItem('studentData');
+            if (storedStudentData) {
+                studentData = JSON.parse(storedStudentData);
+                document.getElementById('studentName').value = studentData['Student Name'] || '';
+                document.getElementById('fatherName').value = studentData['Father Name'] || '';
+                document.getElementById('email').value = studentData['Email'] || '';
+                document.getElementById('mobile').value = studentData['Mobile'] || '';
+                document.getElementById('city').value = studentData['City'] || '';
+            }
+            const storedCode = localStorage.getItem('studentAccessCode');
+            if (storedCode) {
+                studentAccessCode = storedCode;
+            }
+            
+            showPage('signin-page');
+            
+            if (toggleDevPasswordIcon) toggleDevPasswordIcon.addEventListener('click', () => togglePasswordVisibility('developerPassword', 'toggleDeveloperPassword'));
+            if (toggleQuizCodeIcon) toggleQuizCodeIcon.addEventListener('click', () => togglePasswordVisibility('quizAccessCode', 'toggleQuizAccessCode'));
+        });
+
+        function showQuizNotification(title, message, type = 'info') {
+            const allowedNotifications = ['Registration Successful', 'Access Granted', 
+                                         'Quiz Completed!', 'Quiz Reset', 'Registration Error', 'Submission Error', 'Registration Warning'];
+            
+            if (!allowedNotifications.includes(title)) {
+                return;
+            }
+            
+            notificationTitleEl.textContent = title;
+            notificationMessageEl.textContent = message;
+            
+            quizNotificationEl.classList.remove('warning', 'error');
+            
+            if (type === 'warning') {
+                quizNotificationEl.classList.add('warning');
+            } else if (type === 'error') {
+                quizNotificationEl.classList.add('error');
+            }
+            
+            quizNotificationEl.classList.add('show');
+            
+            setTimeout(() => {
+                if (quizNotificationEl.classList.contains('show')) {
+                    hideQuizNotification();
+                }
+            }, 5000);
+        }
+
+        function hideQuizNotification() {
+            quizNotificationEl.classList.remove('show');
+        }
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.error-box, .success-box').forEach(el => el.style.display = 'none');
+        }
+
+        function togglePasswordVisibility(inputID, iconID) {
+            const passwordInput = document.getElementById(inputID);
+            const toggleIcon = document.getElementById(iconID);
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            }
+        }
+
+        function showQuizAccessForm() {
+            document.getElementById('quiz-access-form').style.display = 'flex';
+            document.getElementById('developer-access-form').style.display = 'none';
+        }
+
+        function showDeveloperAccessForm() {
+            document.getElementById('developer-access-form').style.display = 'flex';
+            document.getElementById('quiz-access-form').style.display = 'none';
+        }
+
+        function showRegistrationPage() {
+            showPage('registration-page');
+        }
+
+        // Registration Handler
+        function generateAccessCode(studentName, fatherName) {
+            const studentInitials = studentName.split(' ').map(n => n[0]).join('').toUpperCase();
+            const fatherInitials = fatherName.split(' ').map(n => n[0]).join('').toUpperCase();
+            const uniqueId = Math.random().toString(36).substring(2, 7).toUpperCase();
+
+            return `${ACADEMY_NAME.replace(/\s+/g, '-')}-${studentInitials}${fatherInitials}-${uniqueId}`;
+        }
+
+        function handleRegistration() {
+            const sName = document.getElementById('studentName').value.trim();
+            const fName = document.getElementById('fatherName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mobile = document.getElementById('mobile').value.trim();
+            const city = document.getElementById('city').value.trim();
+            
+            if (!sName || !fName || !email || !mobile || !city) {
+                showQuizNotification('Registration Error', 'Please fill in all the registration details.', 'error');
+                return;
+            }
+            
+            // Generate access code
+            const generatedCode = generateAccessCode(sName, fName);
+            studentAccessCode = generatedCode;
+
+            studentData = {
+                'Student Name': sName,
+                'Father Name': fName,
+                'Email': email,
+                'Mobile': mobile,
+                'City': city
+            };
+
+            // --- NEW: SEND REGISTRATION DATA TO GOOGLE SHEET ---
+            const registrationDataToSend = {
+                type: 'registration',
+                accessCode: generatedCode,
+                studentName: sName,
+                fatherName: fName,
+                email: email,
+                mobile: mobile,
+                city: city
+            };
+            
+            sendDataToSheet(registrationDataToSend)
+                .then(response => {
+                    console.log('Sheet Registration Response:', response);
+                    showQuizNotification('Registration Successful', `Your code: ${generatedCode}. Data submitted to sheet.`, 'info');
+                })
+                .catch(error => {
+                    console.error('Sheet Registration Error:', error);
+                    showQuizNotification('Registration Warning', `Registration saved locally, but sheet submission failed.`, 'warning');
+                });
+            // ----------------------------------------------------
+            
+            // Store data locally
+            localStorage.setItem('studentAccessCode', generatedCode);
+            localStorage.setItem('studentData', JSON.stringify(studentData));
+            
+            const registrations = JSON.parse(localStorage.getItem('wcwRegistrations') || '[]');
+            registrations.push({
+                ...studentData,
+                accessCode: generatedCode,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('wcwRegistrations', JSON.stringify(registrations));
+            
+            
+            // Start the quiz after registration
+            startQuiz('WCW-LR-04', 'Student', generatedCode);
+        }
+
+        // Quiz Access Handler
+        function checkDeveloperPassword() {
+            devErrorBox.style.display = 'none';
+            if (devPasswordInput.value === DEV_ACCESS_CODE) {
+                showQuizNotification('Access Granted', 'Welcome! You have successfully logged in as a developer.', 'info');
+                startQuiz('WCW-LR-04', 'Developer', DEV_ACCESS_CODE);
+            } else {
+                devErrorBox.style.display = 'block';
+            }
+        }
+
+        function accessQuiz(inputCode) {
+            const errorBox = document.getElementById('quiz-error-box');
+            errorBox.style.display = 'none';
+            
+            const storedStudentCode = localStorage.getItem('studentAccessCode');
+            
+            if (inputCode === QUIZ_ACCESS_CODE || inputCode === DEV_ACCESS_CODE || inputCode === storedStudentCode) {
+                showQuizNotification('Access Granted', 'Welcome! You can now start the quiz.', 'info');
+                startQuiz('WCW-LR-04', 'Student', inputCode);
+            } else {
+                errorBox.style.display = 'block';
+            }
+        }
+
+        function startQuiz(quizId, userType, code) {
+            currentQuizId = quizId;
+            quizData = quizData_WCW_LR_04;
+            
+            // Always start fresh - no progress restoration
+            currentQuestion = 0;
+            userAnswers = Array(quizData.length).fill(null);
+            
+            timeLeft = quizData.length * TIME_PER_MCQ;
+            questionTimeLeft = TIME_PER_MCQ;
+            
+            localStorage.setItem('lastAccessCode', code);
+
+            showPage('quiz-page');
+            initQuiz();
+        }
+
+        // Quiz Logic
+        function initQuiz() {
+            quizSubjectEl.textContent = QUIZ_SUBJECT;
+            perMcqTimeEl.textContent = Math.floor(TIME_PER_MCQ / 60);
+            
+            websiteLinkEl.href = WEBSITE_LINK;
+            whatsappContactLinkEl.href = 'https://wa.me/' + WHATSAPP_CONTACT;
+            whatsappCommunityLinkEl.href = WHATSAPP_COMMUNITY;
+            
+            quizTitleEl.textContent = `Test - ID: ${currentQuizId}`;
+            renderQuestionNav();
+            renderQuestion();
+
+            if (totalTimeInterval) clearInterval(totalTimeInterval);
+            if (questionTimeInterval) clearInterval(questionTimeInterval);
+            
+            totalTimeInterval = setInterval(updateTotalTimer, 1000);
+            questionTimeInterval = setInterval(updateQuestionTimer, 1000);
+        }
+
+        function updateTotalTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                totalTimerEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            } else {
+                clearInterval(totalTimeInterval);
+                submitTest(true);
+            }
+        }
+
+        function updateQuestionTimer() {
+            if (questionTimeLeft > 0) {
+                questionTimeLeft--;
+                questionTimerEl.textContent = `${questionTimeLeft}`;
+            } else {
+                questionTimeLeft = TIME_PER_MCQ;
+                navigateQuestion('next');
+            }
+        }
+
+        function renderQuestionNav() {
+            questionNavEl.innerHTML = '';
+            quizData.forEach((_, index) => {
+                const navItem = document.createElement('div');
+                navItem.classList.add('question-nav-item');
+                navItem.textContent = index + 1;
+                navItem.onclick = () => navigateQuestion(index);
+                
+                if (index === currentQuestion) {
+                    navItem.classList.add('current');
+                } else if (userAnswers[index] !== null) {
+                    navItem.classList.add('solved');
+                } else if (userAnswers.slice(0, index).some(ans => ans !== null) || index < currentQuestion) {
+                     navItem.classList.add('visited');
+                }
+                
+                questionNavEl.appendChild(navItem);
+            });
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const solvedCount = userAnswers.filter(answer => answer !== null).length;
+            const progress = (solvedCount / quizData.length) * 100;
+            quizProgressEl.style.width = `${progress}%`;
+        }
+
+        function renderQuestion() {
+            reasoningEl.style.display = 'none';
+            reasoningBtn.classList.add('disabled');
+            const question = quizData[currentQuestion];
+            questionTextEl.textContent = `${currentQuestion + 1}. ${question.question}`;
+            
+            optionsContainerEl.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionEl = document.createElement('div');
+                optionEl.classList.add('option');
+                optionEl.textContent = option;
+                
+                const isAnswered = userAnswers[currentQuestion] !== null;
+
+                if (!isAnswered) {
+                    optionEl.onclick = () => selectOption(index);
+                } else {
+                    if (index === question.correctAnswer) {
+                        optionEl.classList.add('correct');
+                    } else if (index === userAnswers[currentQuestion]) {
+                        optionEl.classList.add('incorrect');
+                    }
+                }
+                
+                if (userAnswers[currentQuestion] === index) {
+                    optionEl.classList.add('selected');
+                }
+
+                optionsContainerEl.appendChild(optionEl);
+            });
+            
+            questionTimeLeft = TIME_PER_MCQ;
+            questionTimerEl.textContent = `${questionTimeLeft}`;
+            renderQuestionNav();
+            
+            if (userAnswers[currentQuestion] !== null) {
+                reasoningBtn.classList.remove('disabled');
+            }
+        }
+
+        function selectOption(optionIndex) {
+            const question = quizData[currentQuestion];
+            userAnswers[currentQuestion] = optionIndex;
+            
+            reasoningBtn.classList.remove('disabled');
+            
+            const options = optionsContainerEl.querySelectorAll('.option');
+            options.forEach((option, index) => {
+                option.onclick = null;
+                option.classList.remove('selected', 'correct', 'incorrect');
+                
+                if (index === question.correctAnswer) {
+                    option.classList.add('correct');
+                } else if (index === optionIndex) {
+                    option.classList.add('incorrect');
+                }
+                
+                if (index === optionIndex) {
+                     option.classList.add('selected');
+                }
+            });
+
+            renderQuestionNav();
+            
+            setTimeout(() => {
+                navigateQuestion('next');
+            }, 800);
+        }
+
+        function navigateQuestion(direction) {
+            const totalQuestions = quizData.length;
+            let nextIndex;
+
+            if (typeof direction === 'number') {
+                nextIndex = direction;
+            } else if (direction === 'next') {
+                nextIndex = (currentQuestion + 1) % totalQuestions;
+            } else if (direction === 'prev') {
+                nextIndex = (currentQuestion - 1 + totalQuestions) % totalQuestions;
+            } else {
+                return;
+            }
+
+            if (nextIndex === currentQuestion) return;
+            
+            currentQuestion = nextIndex;
+            renderQuestion();
+        }
+
+        function toggleReasoning() {
+            if (reasoningBtn.classList.contains('disabled')) return;
+            
+            const question = quizData[currentQuestion];
+            if (reasoningEl.style.display === 'block') {
+                reasoningEl.style.display = 'none';
+            } else {
+                reasoningTextEl.textContent = question.reasoning;
+                reasoningEl.style.display = 'block';
+            }
+        }
+
+        function submitTest(isTimeout = false) {
+            if (!isTimeout && !confirm('Are you sure you want to submit the quiz?')) {
+                return;
+            }
+            
+            clearInterval(totalTimeInterval);
+            clearInterval(questionTimeInterval);
+
+            let correct = 0;
+            let incorrect = 0;
+            let unanswered = 0;
+
+            quizData.forEach((question, index) => {
+                if (userAnswers[index] === null) {
+                    unanswered++;
+                } else if (userAnswers[index] === question.correctAnswer) {
+                    correct++;
+                } else {
+                    incorrect++;
+                }
+            });
+
+            const totalQuestions = quizData.length;
+            const totalScore = (correct * MARK_PER_MCQ) - (incorrect * NEGATIVE_MARKING);
+            const totalMarks = totalQuestions * MARK_PER_MCQ;
+
+            correctCountEl.textContent = correct;
+            incorrectCountEl.textContent = incorrect;
+            unansweredCountEl.textContent = unanswered;
+            
+            const performancePercentage = (correct / totalQuestions) * 100;
+            performanceFillEl.style.width = `${performancePercentage}%`;
+
+            const savedStudentData = JSON.parse(localStorage.getItem('studentData') || '{}');
+            const lastAccessCode = localStorage.getItem('lastAccessCode') || 'N/A';
+            
+            let studentInfoHtml = '';
+            for (const [key, value] of Object.entries(savedStudentData)) {
+                studentInfoHtml += `<tr><td>${key}</td><td>${value}</td></tr>`;
+            }
+            studentInfoHtml += `<tr><td>Access Code Used</td><td>${lastAccessCode}</td></tr>`;
+            studentInfoTable.innerHTML = studentInfoHtml;
+
+            quizResultsTable.innerHTML = `
+                <tr><td>Quiz ID</td><td>${currentQuizId}</td></tr>
+                <tr><td>Total Questions</td><td>${totalQuestions}</td></tr>
+                <tr><td>Correct Answers</td><td>${correct}</td></tr>
+                <tr><td>Incorrect Answers</td><td>${incorrect}</td></tr>
+                <tr><td>Unanswered</td><td>${unanswered}</td></tr>
+                <tr><td>Your Score</td><td>${totalScore} / ${totalMarks}</td></tr>
+            `;
+
+            // --- NEW: SEND QUIZ RESULTS TO GOOGLE SHEET ---
+            if (lastAccessCode && lastAccessCode !== 'N/A') {
+                const resultsDataToSend = {
+                    type: 'quiz_result',
+                    accessCode: lastAccessCode,
+                    quizId: currentQuizId,
+                    totalQuestions: totalQuestions,
+                    correct: correct,
+                    incorrect: incorrect,
+                    unanswered: unanswered,
+                    totalScore: totalScore,
+                    totalMarks: totalMarks,
+                    studentName: savedStudentData['Student Name'] || 'Unknown' 
+                };
+
+                sendDataToSheet(resultsDataToSend)
+                    .then(response => {
+                        console.log('Sheet Results Update Response:', response);
+                    })
+                    .catch(error => {
+                        console.error('Sheet Results Update Error:', error);
+                        showQuizNotification('Submission Error', 'Failed to send results to the server sheet.', 'error');
+                    });
+            }
+            // ----------------------------------------------------
+
+
+            const results = JSON.parse(localStorage.getItem('wcwQuizResults') || '[]');
+            results.push({
+                studentName: savedStudentData['Student Name'] || 'Unknown',
+                accessCode: lastAccessCode,
+                quizId: currentQuizId,
+                totalQuestions: totalQuestions,
+                correct: correct,
+                incorrect: incorrect,
+                unanswered: unanswered,
+                totalScore: totalScore,
+                totalMarks: totalMarks,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('wcwQuizResults', JSON.stringify(results));
+            
+            showQuizNotification('Quiz Completed!', `Your score: ${totalScore}/${totalMarks}. Check the results page for details.`, 'info');
+            
+            showPage('results-page');
+        }
+
+        function restartTest() {
+            if (confirm('Are you sure you want to retake the full test? Your current progress will be lost.')) {
+                quizData = quizData_WCW_LR_04;
+                currentQuestion = 0;
+                userAnswers = Array(quizData.length).fill(null);
+                timeLeft = quizData.length * TIME_PER_MCQ;
+                
+                showPage('quiz-page');
+                initQuiz();
+            }
+        }
+
+        function retakeIncorrect() {
+            const incorrectIndices = quizData.map((question, index) => {
+                const isIncorrect = userAnswers[index] !== null && 
+                                    userAnswers[index] !== question.correctAnswer;
+                return isIncorrect ? index : -1;
+            }).filter(index => index !== -1);
+            
+            if (incorrectIndices.length === 0) {
+                showQuizNotification('No Incorrect Questions', 'You have no incorrect questions to retake!', 'info');
+                return;
+            }
+            
+            quizData = incorrectIndices.map(index => quizData_WCW_LR_04[index]);
+            currentQuestion = 0;
+            userAnswers = Array(quizData.length).fill(null);
+            timeLeft = quizData.length * TIME_PER_MCQ;
+            
+            showPage('quiz-page');
+            initQuiz();
+        }
+
+        function viewAllMcqs() {
+            allMcqsList.innerHTML = '';
+            quizData_WCW_LR_04.forEach((question, index) => {
+                const mcqItem = document.createElement('div');
+                mcqItem.classList.add('all-mcq-item');
+                mcqItem.innerHTML = `
+                    <div class="question-text">${index + 1}. ${question.question}</div>
+                    <div class="all-mcq-options">
+                        ${question.options.map((option, optIndex) => `
+                            <div class="all-mcq-option ${optIndex === question.correctAnswer ? 'correct' : ''}">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="all-mcq-reasoning">
+                        <strong>Reasoning:</strong> ${question.reasoning}
+                    </div>
+                `;
+                allMcqsList.appendChild(mcqItem);
+            });
+            showPage('all-mcqs-page');
+        }
+    </script>
+</body>
+</html>
